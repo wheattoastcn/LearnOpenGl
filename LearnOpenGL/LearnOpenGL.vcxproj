@@ -157,6 +157,10 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\IndexBuffer.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\StaticShader.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\VertexArray.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\VertexBuffer.cpp" />
     <ClCompile Include="Source\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Source\vendor\glm\glm.cppm" />
     <ClCompile Include="Source\vendor\imgui\imgui.cpp" />
@@ -169,6 +173,11 @@
     <ClCompile Include="Source\vendor\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\RenderFrameWork\IndexBuffer.h" />
+    <ClInclude Include="Source\RenderFrameWork\StaticShader.h" />
+    <ClInclude Include="Source\RenderFrameWork\VertexArray.h" />
+    <ClInclude Include="Source\RenderFrameWork\VertexBuffer.h" />
+    <ClInclude Include="Source\RenderFrameWork\VertexBufferDesc.h" />
     <ClInclude Include="Source\vendor\glm\common.hpp" />
     <ClInclude Include="Source\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="Source\vendor\glm\detail\compute_vector_decl.hpp" />
@@ -471,6 +480,8 @@
     <ClInclude Include="Source\vendor\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resource\Shader\Testfra.shader" />
+    <None Include="Resource\Shader\Testver.shader" />
     <None Include="Source\vendor\glm\detail\func_common.inl" />
     <None Include="Source\vendor\glm\detail\func_common_simd.inl" />
     <None Include="Source\vendor\glm\detail\func_exponential.inl" />

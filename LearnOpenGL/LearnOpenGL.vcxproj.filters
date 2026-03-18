@@ -51,6 +51,18 @@
     <ClCompile Include="glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RenderFrameWork\VertexBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderFrameWork\StaticShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderFrameWork\VertexArray.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderFrameWork\IndexBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\vendor\glm\detail\_features.hpp">
@@ -953,6 +965,21 @@
     <ClInclude Include="Source\vendor\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\VertexBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\StaticShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\VertexBufferDesc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\VertexArray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\IndexBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\vendor\glm\detail\func_common.inl">
@@ -1375,5 +1402,7 @@
     <None Include="Source\vendor\glm\gtx\wrap.inl">
       <Filter>头文件</Filter>
     </None>
+    <None Include="Resource\Shader\Testver.shader" />
+    <None Include="Resource\Shader\Testfra.shader" />
   </ItemGroup>
 </Project>
