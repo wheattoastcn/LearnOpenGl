@@ -22,7 +22,7 @@ void VertexArray::AddBuffer(const VertexBuffer& vb,const IndexBuffer& ib)
 	for (unsigned int i = 0; i < elements.size(); i++)
 	{
 		const auto& element = elements[i];
-		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(i);
 		/*
 		* 1.	index: 顶点属性的索引，通常是从 0 开始的整数。这个索引对应于着色器中的属性位置。
 		  2.	size: 每个顶点属性的组件数量。例如，如果一个顶点位置由 x, y, z 三个分量组成，则 size 为 3。

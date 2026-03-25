@@ -2,6 +2,7 @@ D:\code\LearnOpenGL\LearnOpenGL\glad.c;D:\code\LearnOpenGL\Intermediate\x64\Debu
 D:\code\LearnOpenGL\LearnOpenGL\Source\Application.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\Application.obj
 D:\code\LearnOpenGL\LearnOpenGL\Source\RenderFrameWork\IndexBuffer.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\IndexBuffer.obj
 D:\code\LearnOpenGL\LearnOpenGL\Source\RenderFrameWork\StaticShader.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\StaticShader.obj
+D:\code\LearnOpenGL\LearnOpenGL\Source\RenderFrameWork\Texture.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\Texture.obj
 D:\code\LearnOpenGL\LearnOpenGL\Source\RenderFrameWork\VertexArray.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\VertexArray.obj
 D:\code\LearnOpenGL\LearnOpenGL\Source\RenderFrameWork\VertexBuffer.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\VertexBuffer.obj
 D:\code\LearnOpenGL\LearnOpenGL\Source\vendor\glm\detail\glm.cpp;D:\code\LearnOpenGL\Intermediate\x64\Debug\glm.obj

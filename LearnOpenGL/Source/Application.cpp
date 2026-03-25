@@ -13,6 +13,7 @@
 #include "RenderFrameWork/StaticShader.h"
 #include "RenderFrameWork/VertexArray.h"
 #include "RenderFrameWork/IndexBuffer.h"
+#include "RenderFrameWork/Texture.h"
 
 void processInput(GLFWwindow* window)
 {
@@ -61,10 +62,10 @@ int main(void)
 
 
     float vertices[] = {
-    0.5f, 0.5f, 0.0f,   // срио╫г
-    0.5f, -0.5f, 0.0f,  // сроб╫г
-    -0.5f, -0.5f, 0.0f, // вСоб╫г
-    -0.5f, 0.5f, 0.0f   // вСио╫г
+    0.5f, 0.5f, 0.0f, 1.0f,1.0f,  // срио╫г
+    0.5f, -0.5f, 0.0f,1.0f,0.0f,  // сроб╫г
+    -0.5f, -0.5f, 0.0f,0.0f,0.0f, // вСоб╫г
+    -0.5f, 0.5f, 0.0f,0.0f,1.0f  // вСио╫г
     };
 
     unsigned int indices[] = {
@@ -77,11 +78,10 @@ int main(void)
     };
 
 
-    StaticShader TestShader = StaticShader();
-    TestShader.AttachNewShaderResource("Resource/Shader/Testver.shader", GL_VERTEX_SHADER);
-    TestShader.AttachNewShaderResource("Resource/Shader/Testfra.shader", GL_FRAGMENT_SHADER);
-    TestShader.Linked();
-    TestShader.Bind();
+   
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     VertexBuffer VBO = VertexBuffer(vertices,sizeof(vertices), GL_STATIC_DRAW);
     IndexBuffer IBO = IndexBuffer(indices,sizeof(indices));
@@ -89,10 +89,22 @@ int main(void)
     
     VertexArray VAO = VertexArray();
     VAO.m_vBufferDesc.Push<float>(3);
+    VAO.m_vBufferDesc.Push<float>(2);
     VAO.AddBuffer(VBO,IBO);
     
 
-    glBindBuffer(GL_ARRAY_BUFFER,0);
+
+    StaticShader TestShader = StaticShader();
+    TestShader.AttachNewShaderResource("Resource/Shader/Testver.shader", GL_VERTEX_SHADER);
+    TestShader.AttachNewShaderResource("Resource/Shader/Testfra.shader", GL_FRAGMENT_SHADER);
+    TestShader.Linked();
+    TestShader.Bind();
+
+    Texture tes = Texture("Resource/block/steep_planks.png");
+    tes.Bind();
+    TestShader.SetUniformVariablei("u_Texture", 0);
+
+    VAO.UnBind();
     TestShader.UnBind();
 
     /** imgui setup */

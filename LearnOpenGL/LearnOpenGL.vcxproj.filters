@@ -63,6 +63,9 @@
     <ClCompile Include="Source\RenderFrameWork\IndexBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RenderFrameWork\Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\vendor\glm\detail\_features.hpp">
@@ -978,6 +981,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Source\RenderFrameWork\IndexBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderFrameWork\Texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

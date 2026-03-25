@@ -159,6 +159,7 @@
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\RenderFrameWork\IndexBuffer.cpp" />
     <ClCompile Include="Source\RenderFrameWork\StaticShader.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\Texture.cpp" />
     <ClCompile Include="Source\RenderFrameWork\VertexArray.cpp" />
     <ClCompile Include="Source\RenderFrameWork\VertexBuffer.cpp" />
     <ClCompile Include="Source\vendor\glm\detail\glm.cpp" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Source\RenderFrameWork\IndexBuffer.h" />
     <ClInclude Include="Source\RenderFrameWork\StaticShader.h" />
+    <ClInclude Include="Source\RenderFrameWork\Texture.h" />
     <ClInclude Include="Source\RenderFrameWork\VertexArray.h" />
     <ClInclude Include="Source\RenderFrameWork\VertexBuffer.h" />
     <ClInclude Include="Source\RenderFrameWork\VertexBufferDesc.h" />
