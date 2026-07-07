@@ -62,7 +62,7 @@ void StaticShader::AttachNewShaderResource(const std::string& filepath, unsigned
         glDeleteShader(shader);
     }
     {
-        //TODO 非法操作 调用日志系统
+        //TODO ??????? ?????????
         return;
     }
 }
@@ -71,6 +71,18 @@ void StaticShader::SetUniformVariable4f(const char* name, float v1, float v2, fl
 {
     int loaction = glGetUniformLocation(m_ShaderProgram, name);
     glUniform4f(loaction, v1, v2, v3, v4);
+}
+
+void StaticShader::SetUniformVariable3f(const char* name, float v1, float v2, float v3)
+{
+    int loaction = glGetUniformLocation(m_ShaderProgram, name);
+    glUniform3f(loaction, v1, v2, v3);
+}
+
+void StaticShader::SetUniformVariable3f(const char* name, const glm::vec3& v)
+{
+    int loaction = glGetUniformLocation(m_ShaderProgram, name);
+    glUniform3f(loaction, v.x, v.y, v.z);
 }
 
 void StaticShader::SetUniformVariablei(const char* name, int v)
@@ -101,7 +113,7 @@ std::string StaticShader::GetshaderResBypath(const std::string& filepath)
     {
         if (line.find("#shader") != std::string::npos)
         {
-           //TODO 文件格式错误 调用日志系统
+           //TODO ?????????? ?????????
         }
         else
         {

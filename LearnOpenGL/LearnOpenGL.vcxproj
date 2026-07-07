@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\RenderFrameWork\CameraBase.cpp" />
     <ClCompile Include="Source\RenderFrameWork\IndexBuffer.cpp" />
     <ClCompile Include="Source\RenderFrameWork\StaticShader.cpp" />
     <ClCompile Include="Source\RenderFrameWork\Texture.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Source\vendor\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\RenderFrameWork\CameraBase.h" />
     <ClInclude Include="Source\RenderFrameWork\IndexBuffer.h" />
     <ClInclude Include="Source\RenderFrameWork\StaticShader.h" />
     <ClInclude Include="Source\RenderFrameWork\Texture.h" />
@@ -624,6 +626,10 @@
     <None Include="Source\vendor\glm\gtx\vector_angle.inl" />
     <None Include="Source\vendor\glm\gtx\vector_query.inl" />
     <None Include="Source\vendor\glm\gtx\wrap.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\Shader\baselightfra.shader" />
+    <Content Include="Resource\Shader\basever.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
