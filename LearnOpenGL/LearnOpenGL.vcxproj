@@ -630,6 +630,8 @@
   <ItemGroup>
     <Content Include="Resource\Shader\baselightfra.shader" />
     <Content Include="Resource\Shader\basever.shader" />
+    <Content Include="Resource\Shader\Blendlightfra.shader" />
+    <Content Include="Resource\Shader\Spotlightfra.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
@@ -14,6 +14,7 @@ public:
     void MouseInputCallBack(double xpos, double ypos);
     void Render();
     glm::vec3 GetCameraPos() const { return cameraPos; }
+    glm::vec3 GetCameraFront() const { return cameraFront; }
     
     glm::mat4 GetViewMatrix() const { return view; }
 protected:

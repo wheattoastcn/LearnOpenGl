@@ -146,19 +146,19 @@ float vertices[] = {
 
     StaticShader TestShader = StaticShader();
     TestShader.AttachNewShaderResource("Resource/Shader/Testver.shader", GL_VERTEX_SHADER);
-    TestShader.AttachNewShaderResource("Resource/Shader/Testfra.shader", GL_FRAGMENT_SHADER);
+    TestShader.AttachNewShaderResource("Resource/Shader/Blendlightfra.shader", GL_FRAGMENT_SHADER);
     
     
     TestShader.Linked();
     TestShader.Bind();
 
+   
     Texture tes = Texture("Resource/container2.png");
-    tes.Bind(0);
-    TestShader.SetUniformVariablei("u_Texture", 0);
-    
     Texture tes_specular_map = Texture("Resource/container2_specular.png");
+    tes.Bind(0);
+    TestShader.SetUniformVariablei("material.Texture", 0);
     tes_specular_map.Bind(1);
-    TestShader.SetUniformVariablei("u_Specular", 1);
+    TestShader.SetUniformVariablei("material.Specular", 1);
 
     
     
@@ -202,9 +202,20 @@ float vertices[] = {
 
     
     glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
-    
-    glm::mat4 model = glm::mat4(1.0f);
-    //model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+    // 10 个正方体的位置，全部放在光源的负 X 侧（光源左侧）
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,  0.0f),
+        glm::vec3(-1.5f,  0.5f, -1.0f),
+        glm::vec3(-3.0f, -0.5f,  1.0f),
+        glm::vec3(-4.5f,  1.0f, -1.5f),
+        glm::vec3(-6.0f,  0.0f,  0.5f),
+        glm::vec3(-7.5f, -1.0f, -1.0f),
+        glm::vec3(-1.0f, -1.5f,  2.0f),
+        glm::vec3(-2.5f,  1.5f,  2.5f),
+        glm::vec3(-4.0f, -2.0f,  3.0f),
+        glm::vec3(-5.5f,  2.0f,  3.5f)
+    };
     
     glm::mat4 model_light = glm::mat4(1.0f);
     model_light = glm::translate(model_light, lightPos);
@@ -217,6 +228,8 @@ float vertices[] = {
    Test->BindToWindow(window);
     
     float lastFrame = 0.0f;
+    
+   
     
     while (!glfwWindowShouldClose(window))
     {
@@ -240,19 +253,51 @@ float vertices[] = {
         
         
         TestShader.Bind();
-        TestShader.SetUniformMatrix4f("m",model);
         TestShader.SetUniformMatrix4f("v",Test->GetViewMatrix());
         TestShader.SetUniformMatrix4f("p",projection);
-        TestShader.SetUniformMatrix4f("transform",transform);
-        TestShader.SetUniformVariable3f("lightColor",1.0f, 0.956f, 0.918f);
-        TestShader.SetUniformVariable3f("lightPos",lightPos);
+        TestShader.SetUniformMatrix4f("transform",transform); 
+
+        // 材质参数
+        TestShader.SetUniformVariable1f("material.diffuseStrength",0.8f);
+        TestShader.SetUniformVariable1f("material.specularStrength",0.8f);
+        TestShader.SetUniformVariable1f("material.shininess",128.f);
+
+        // 平行光（偏蓝的冷色调，营造阴森氛围）
+        TestShader.SetUniformVariable3f("dirLight.direction",-0.2f, -1.0f, -0.3f);
+        TestShader.SetUniformVariable3f("dirLight.color",0.2f, 0.4f, 0.8f);
+        TestShader.SetUniformVariable1f("dirLight.intensity",0.6f);
+        TestShader.SetUniformVariable1f("dirLight.ambientStrength",0.1f);
+
+        // 点光源（暖色，模拟火把/蜡烛）
+        TestShader.SetUniformVariable3f("pointLight.color",1.0f, 0.5f, 0.2f);
+        TestShader.SetUniformVariable3f("pointLight.position",lightPos);
+        TestShader.SetUniformVariable1f("pointLight.constant",1.0f);
+        TestShader.SetUniformVariable1f("pointLight.linear",0.09f);
+        TestShader.SetUniformVariable1f("pointLight.quadratic",0.032f);
+        TestShader.SetUniformVariable1f("pointLight.intensity",1.0f);
+        TestShader.SetUniformVariable1f("pointLight.ambientStrength",0.1f);
+
+        // 聚光灯（手电筒，无环境光）
+        TestShader.SetUniformVariable3f("spotLight.color",1.0f, 1.0f, 1.0f);
+        TestShader.SetUniformVariable3f("spotLight.position",Test->GetCameraPos());
+        TestShader.SetUniformVariable3f("spotLight.direction",Test->GetCameraFront());
+        TestShader.SetUniformVariable1f("spotLight.cutOff",glm::cos(glm::radians(12.5f)));
+        TestShader.SetUniformVariable1f("spotLight.outerCutOff",glm::cos(glm::radians(17.5f)));
+        TestShader.SetUniformVariable1f("spotLight.intensity",1.0f);
+
         TestShader.SetUniformVariable3f("viewPos",Test->GetCameraPos());
         
-        tes.Bind(0);
-        tes_specular_map.Bind(1);
 
         VAO.Bind();
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        // 循环绘制 10 个正方体，通过 model 矩阵修改各自位置
+        for (unsigned int i = 0; i < 10; i++)
+        {
+            glm::mat4 cubeModel = glm::mat4(1.0f);
+            cubeModel = glm::translate(cubeModel, cubePositions[i]);
+            cubeModel = glm::rotate(cubeModel, (float)glfwGetTime() + i, glm::vec3(0.0f, 1.0f, 0.0f));
+            TestShader.SetUniformMatrix4f("m", cubeModel);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
 
         
         
@@ -262,7 +307,7 @@ float vertices[] = {
         LightShader.SetUniformMatrix4f("p",projection);
         
         VAO_light.Bind();
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
         
 
         {
